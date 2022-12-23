@@ -2,6 +2,8 @@ import "./App.css";
 import { useState } from "react";
 import axios from "axios";
 
+
+
 function App() {
   const [data, setData] = useState({});
   const [location, setLocation] = useState("");
@@ -17,7 +19,20 @@ function App() {
 
       searchLocation("");
     }
+    
   };
+  const searchLocationBtn = ()=>{
+    axios
+    .get(url)
+    .then((res) => {
+      setData(res.data);
+    })
+    .catch(console.error);
+
+  searchLocation("");
+  }
+
+
   const current = new Date();
   const date = ` ${current.getDate()} / ${current.getMonth() + 1}`;
   const tomorrow = ` ${current.getDate() + 1} / ${current.getMonth() + 1}`;
@@ -39,11 +54,13 @@ function App() {
               onChange={(event) => setLocation(event.target.value)}
               onKeyPress={searchLocation}
             />
+            <button onClick={searchLocationBtn}>enter</button>
+            
           </div>
         </div>
         <div className="cont">
           <div>
-            <h2>today{date}</h2>
+            <h2>{date}</h2>
           </div>
           
           <div className="temps">
@@ -51,12 +68,12 @@ function App() {
             <div>{data.list ? <h1>{data.list[0].main.temp_max}°</h1> : ""}</div>
           </div>
           <div className="describtion">
-            {data.list ? <h3>describtion: {data.list[0].weather[0].description}</h3> : null}
+            {data.list ? <h3>status: {data.list[0].weather[0].description}</h3> : null}
           </div>
         </div>
         <div className="cont">
           <div>
-            <h2>tomorrow {tomorrow}</h2>
+            <h2>{tomorrow}</h2>
           </div>
           <div className="temps">
             <div>{data.list ? <h1>{data.list[1].main.temp_min}°</h1> : ""}</div>
@@ -64,12 +81,12 @@ function App() {
           </div>
 
           <div className="describtion">
-            {data.list ? <h3>describtion: {data.list[1].weather[0].description}</h3> : null}
+            {data.list ? <h3>status: {data.list[1].weather[0].description}</h3> : null}
           </div>
         </div>
         <div className="cont">
           <div>
-            <h2>after tomorrow{afterTomorrow}</h2>
+            <h2>{afterTomorrow}</h2>
           </div>
           <div>{data.country}</div>
           
@@ -78,7 +95,7 @@ function App() {
             <div>{data.list ? <h1>{data.list[2].main.temp_max}°</h1> : ""}</div>
           </div>
           <div className="describtion">
-            {data.list ? <h3>describtion: {data.list[2].weather[0].description}</h3> : null}
+            {data.list ? <h3>status: {data.list[2].weather[0].description}</h3> : null}
           </div>
         </div>
       </div>

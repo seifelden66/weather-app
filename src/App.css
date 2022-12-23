@@ -11,7 +11,7 @@
   content: '';
   background-image: url('nature.jpg');
   background-repeat: no-repeat;
-  background-size: cover center/cover;
+  background-size: cover;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -44,13 +44,21 @@
   
  
 }
-@media(min-width:700px){
-  .displaySearch{
-    transform: scale(1.4);
 
-  }
+button{
+  padding: .5rem;
+  background-color: rgba(180, 139, 210, 0.368);
+  border-radius:10px ;
+  width: 60px;
+  border-style: none;
+  color: antiquewhite;
+  transition: 400ms;
 }
-
+button:hover{
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.176);
+  
+}
 
 
 #search {
@@ -69,6 +77,11 @@
   align-items: baseline !important;
  
 
+}
+@media(min-width:1024px){
+  .displaySearch{
+    margin-bottom: 40%;
+  }
 }
 .second_cont{
   display: grid;
@@ -95,7 +108,7 @@
     grid-template-columns: 100%;
   }
   .displaySearch{
-    margin-bottom: 30%;
+    margin-bottom: 25%;
   }
  .temps{
   display: flex;
